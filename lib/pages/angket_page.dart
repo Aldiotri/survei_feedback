@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:survei_feedback/pages/hasil_page.dart';
 import 'package:survei_feedback/model.dart';
 
@@ -34,7 +35,7 @@ class _AngketPageState extends State<AngketPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text("Angket"),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.blue,
       ),
       body: ListView(
         padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
@@ -368,16 +369,6 @@ class _AngketPageState extends State<AngketPage> {
                         });
                       },
                       child: Text('SIMPAN')),
-                  ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => hasil_page(),
-                          ),
-                        );
-                      },
-                      child: Text('HASIL')),
                 ]),
           ),
         ],

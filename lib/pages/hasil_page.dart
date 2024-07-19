@@ -28,7 +28,8 @@ class _hasil_pageState extends State<hasil_page> {
         ),
       ),
     );
-
+  }
+}
     /*DataTable(
         columns: const [
           DataColumn(label: Text('Nama Dosen')),
@@ -51,5 +52,4 @@ class _hasil_pageState extends State<hasil_page> {
           ]);
         }).toList(),
       ),*/
-  }
-}
+

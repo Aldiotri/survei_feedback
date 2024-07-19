@@ -30,8 +30,8 @@ class _NavBarState extends State<NavBar> {
           });
         },
         backgroundColor: Colors.transparent,
-        buttonBackgroundColor: Colors.teal,
-        color: Colors.teal,
+        buttonBackgroundColor: Colors.blue,
+        color: Colors.blue,
         animationDuration: const Duration(milliseconds: 300),
         items: const <Widget>[
           Icon(Icons.home, size: 30, color: Colors.white),

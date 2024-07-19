@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
         appBarTheme: AppBarTheme(foregroundColor: Colors.white),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ButtonStyle(
-              backgroundColor: MaterialStatePropertyAll(Colors.teal),
+              backgroundColor: MaterialStatePropertyAll(Colors.blue),
               foregroundColor: MaterialStatePropertyAll(Colors.white)),
         ),
       ),
