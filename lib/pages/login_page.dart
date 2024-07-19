@@ -1,102 +1,73 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:survei_feedback/navbar/navbar.dart';
-import 'package:survei_feedback/pages/signup_page.dart';
+import 'package:survei_feedback/pages/admin_page.dart';
 
-class login_page extends StatelessWidget {
+class login_page extends StatefulWidget {
+  const login_page({super.key});
+
+  @override
+  State<login_page> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<login_page> {
+  final TextEditingController usernameController = TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+
+  void login() {
+    String username = usernameController.text;
+    String password = passwordController.text;
+
+    if (username == 'admin' && password == 'admin123') {
+      Get.to(() => AdminPage());
+    } else if (username == 'user' && password == 'user123') {
+      Get.to(() => NavBar());
+    } else {
+      Get.snackbar('Login Failed', 'Invalid username or password',
+          snackPosition: SnackPosition.BOTTOM);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          margin: EdgeInsets.all(24),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              _header(context),
-              _inputField(context),
-              _forgotPassword(context),
-              _signup(context),
-            ],
-          ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Login Page'),
+        backgroundColor: Colors.teal,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TextField(
+              controller: usernameController,
+              decoration: InputDecoration(
+                labelText: 'Username',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            TextField(
+              controller: passwordController,
+              obscureText: true,
+              decoration: InputDecoration(
+                labelText: 'Password',
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+              ),
+            ),
+            SizedBox(height: 16),
+            ElevatedButton(
+              onPressed: login,
+              child: Text('Login'),
+            ),
+          ],
         ),
       ),
-    );
-  }
-
-  _header(context) {
-    return Column(
-      children: [
-        Text(
-          "Selamat datang",
-          style: TextStyle(fontSize: 40, fontWeight: FontWeight.bold),
-        ),
-        Text("Aplikasi survei dan feedback"),
-      ],
-    );
-  }
-
-  _inputField(context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        TextField(
-          decoration: InputDecoration(
-              hintText: "Username",
-              border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(18),
-                  borderSide: BorderSide.none),
-              fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-              filled: true,
-              prefixIcon: Icon(Icons.person)),
-        ),
-        SizedBox(height: 10),
-        TextField(
-          decoration: InputDecoration(
-            hintText: "Password",
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(18),
-                borderSide: BorderSide.none),
-            fillColor: Theme.of(context).primaryColor.withOpacity(0.1),
-            filled: true,
-            prefixIcon: Icon(Icons.person),
-          ),
-          obscureText: true,
-        ),
-        SizedBox(height: 10),
-        ElevatedButton(
-          onPressed: () {
-            Navigator.of(context)
-                .push(MaterialPageRoute(builder: (_) => NavBar()));
-          },
-          child: Text(
-            "Login",
-            style: TextStyle(fontSize: 20),
-          ),
-          style: ElevatedButton.styleFrom(
-            shape: StadiumBorder(),
-            padding: EdgeInsets.symmetric(vertical: 16),
-          ),
-        )
-      ],
-    );
-  }
-
-  _forgotPassword(context) {
-    return TextButton(onPressed: () {}, child: Text("Lupa password?"));
-  }
-
-  _signup(context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text("Belum memiliki akun? "),
-        TextButton(
-            onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (_) => signuppage()));
-            },
-            child: Text("Sign Up"))
-      ],
     );
   }
 }
